@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Through the open window</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: pointer;
+        }
+        
+        body {
+            max-width: 1000px;
+            margin: auto;
+            text-align: center;
+            font-size: 1em;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+        
+        .video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+        
+        h1 {
+            margin-bottom: 20px;
+            color: #01066b;
+            text-shadow: 0 0 10px #fff, 0 0 20px #ff0099, 0 0 30px #ff0099, 0 0 40px #ff0099, 0 0 50px #ff0099, 0 0 60px #ff0099, 0 0 70px #ff0099;
+        }
+        
+        .card {
+            width: 100%;
+            max-width: 800px;
+            margin: 10px;
+            padding: 20px;
+            backdrop-filter: blur(5px);
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+            border: 2px solid #fff;
+        }
+        
+        .newspaper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .column {
+            flex: 1;
+            min-width: 280px;
+            padding: 10px;
+        }
+        
+        .news-item {
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+        
+        .active {
+            opacity: 1;
+        }
+        
+        .headline {
+            font-weight: bold;
+            color: #0d032f;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px #ff0099, 0 0 20px #ff0099, 0 0 30px #ff0099;
+        }
+        
+        .news-text {
+            color: #b3ffa2;
+            font-size: 0.9em;
+            text-shadow: 0 0 5px #020113, 0 0 10px #020113, 0 0 15px #020113;
+        }
+        
+        @media (max-width: 768px) {
+            .headline {
+                font-size: 1em;
+            }
+            .news-text {
+                font-size: 0.8em;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .card {
+                padding: 15px;
+            }
+            .headline {
+                font-size: 0.9em;
+            }
+            .news-text {
+                font-size: 0.7em;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <video class="video-background" autoplay muted loop>
+        <source src="background.mp4" type="video/mp4">
+        
+    </video>
+
+    <div class="card">
+        <h1>Through the open window</h1>
+        <div class="newspaper">
+            <div class="column">
+                <div class="news-item active">
+                    <div class="headline">World’s Largest Ice Cream Sundae</div>
+                    <div class="news-text">A team in the Philippines set a new record for the world’s largest ice cream sundae, weighing in at over 14,000 pounds! It was made with thousands of scoops of ice cream, tons of toppings, and required a giant spoon to serve.</div>
+                </div>
+                <div class="news-item">
+                    <div class="headline">Cats Take Over Social Media</div>
+                    <div class="news-text">A cat in Japan has become an internet sensation for its impressive ability to mimic human sounds. Videos of the feline "meowing" in various tones and rhythms have gone viral, bringing joy to millions of viewers worldwide.</div>
+                </div>
+            </div>
+            <div class="column">
+                <div class="news-item">
+                    <div class="headline">Dog’s Day Out</div>
+                    <div class="news-text">A dog in Australia was recently honored with its own "doggy" day at a local amusement park. The park opened its doors exclusively for dogs and their owners, featuring special dog-friendly rides and treats.</div>
+                </div>
+                <div class="news-item">
+                    <div class="headline">Flying Cars</div>
+                    <div class="news-text">A company has successfully tested a prototype of a flying car. While it’s still in the early stages, it’s an exciting glimpse into the future of personal transportation and has sparked plenty of imaginative headlines.</div>
+                </div>
+            </div>
+            <div class="column">
+                <div class="news-item">
+                    <div class="headline">Colorful Produce</div>
+                    <div class="news-text">A farm in the U.S. has grown a variety of brightly colored carrots, including shades of purple, pink, and yellow. They’re not only eye-catching but also packed with different nutrients, making them a fun and healthy addition to any
+                        meal.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        let textIndex = 0;
+        const newsItems = document.getElementsByClassName("news-item");
+
+        function showTexts() {
+            for (let i = 0; i < newsItems.length; i++) {
+                newsItems[i].classList.remove("active");
+            }
+
+            textIndex++;
+            if (textIndex >= newsItems.length) {
+                textIndex = 0;
+            }
+
+            newsItems[textIndex].classList.add("active");
+            setTimeout(showTexts, 3000);
+        }
+
+        showTexts();
+    </script>
+</body>
+
+</html>
